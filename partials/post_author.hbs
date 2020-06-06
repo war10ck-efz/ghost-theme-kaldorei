@@ -1,22 +1,22 @@
 {{! Everything inside the #author tags pulls data from the author }}
-{{#author}}
-{{#if profile_image}}
-<figure class="author-image">
-    <a class="img" href="{{url}}" style="background-image: url({{img_url profile_image}})"><span class="hidden">{{name}}'s Picture</span></a>
-</figure>
-{{/if}}
-{{/author}}
+{{#primary_author}}
+    {{#if profile_image}}
+        <figure class="author-image">
+            <a class="img" href="{{url}}" style="background-image: url({{img_url profile_image}})"><span class="hidden">{{name}}'s Picture</span></a>
+        </figure>
+    {{/if}}
+{{/primary_author}}
 <figure class="author-info">
     <section class="author-info-title">
-        <span><time class="post-date pull-right" datetime="{{date format='YYYY-MM-DD'}}">发表于：{{date format="YYYY-MM-DD"}}</time></span>
-        {{#author}}
-        <span>作者：{{name}}</span>
+        <span class="pull-right">{{t "Publish At"}}：<time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="YYYY-MM-DD"}}</time></span>
+        {{#primary_author}}
+        <span>{{t "Author"}}：{{name}}</span>
     </section>
     <section class="author-info-content">
         {{#if bio}}
             <span class="author-info-bio">{{bio}}</span>
         {{else}}
-            <p>查看此作者的 <a href="{{url}}">更多文章</a> 。</p>
+            <p class="author-info-bio-placeholder">{{t "Read"}} <a href="{{url}}">{{t "more posts"}}</a> {{t "by this author"}}</p>
         {{/if}}
         <section class="author-info-social">
             {{#if website}}<a href="{{website}}" class="author-info-social-website">我的站点</a>{{/if}}
@@ -25,6 +25,6 @@
             <a href="https://github.com/war10ck-efz" class="author-info-social-github">GitHub</a>
             <a href="https://segmentfault.com/u/war10ck_59e1e8a1097e8" class="author-info-social-sf">SegmentFault</a>
         </section>
-        {{/author}}
+        {{/primary_author}}
     </section>
 </figure>
